@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<!-- Test 1: input numerator and denominator then evaluate this fraction
+     There is a bug: Button is placed outside the form, otherwise the button is in inline-block as form's divs -->
+<head>
+    <meta charset="utf-8">
+    <style type="text/css">	
+        .fracmain {	width: 4em; }
+        .fracpart {	width: 100%;}
+        .inline_math {display: inline-block;
+                      vertical-align: middle;}
+    </style>
+
+	<title>Test 1</title>
+</head>
+<body>
+<form id="fracs" name="fracs" action = "">
+    <div class="inline_math">
+    <fieldset class="fracmain" id="frac1" name="frac1">
+        <p>
+    	<input class="fracpart" name="num_of_frac1" type="number" value="1">
+        </p>     
+        <p>&mdash;</p>
+        <p>
+    	<input class="fracpart" name="den_of_frac1" type="number" value="1">
+        </p>
+    </fieldset>  
+    </div>
+
+    <div class="inline_math">
+    	<p> 	=      </p>
+    </div>
+
+    <div class="inline_math">
+    	<p id="val_of_frac1"></p>
+    </div>   	   
+    
+</form>
+
+<button onclick="showValue();">Calculate</button>
+
+<script type="text/javascript">
+    var form = document.forms.fracs;
+    var num1 = form.elements.frac1.elements.num_of_frac1;
+    var den1 = form.elements.frac1.elements.den_of_frac1;
+
+    function showValue() {
+    	document.getElementById("val_of_frac1").innerText = calculateValue();
+    }
+
+    function calculateValue() {
+    	var p = parseInt(num1.value);
+    	var q = parseInt(den1.value);
+    	var result = (q != 0) ? p/q : "Error";
+    	return result;	
+    }
+
+   
+</script>
+
+</body>
+</html>
