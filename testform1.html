@@ -9,6 +9,7 @@
         .fracpart {	width: 100%;}
         .inline_math {display: inline-block;
                       vertical-align: middle;}
+        .block_math {display: block;}              
     </style>
 
 	<title>Test 1</title>
@@ -33,11 +34,14 @@
 
     <div class="inline_math">
     	<p id="val_of_frac1"></p>
-    </div>   	   
+    </div> 
+
+    <div class="block_math">
+    	<input type="button" onclick="showValue();" value="Calculate">
+    </div>
+     	   
     
 </form>
-
-<button onclick="showValue();">Calculate</button>
 
 <script type="text/javascript">
     var form = document.forms.fracs;
