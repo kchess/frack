@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<!-- Test 2: input numerators and denominators then evaluate sum of these fractions 
+     TODO: switch vertical aligment-->
+<head>
+    <meta charset="utf-8">
+    <style type="text/css">	
+        .fracmain {	width: 4em; }
+        .fracpart {	width: 100%;}
+        .inline_math {display: inline-block;
+                      vertical-align: middle;}
+        .block_math {display: block;}   
+        * {margin: 0;  padding: 0;} 
+        html, body {height: 100%;}
+        .wrapper {  display: flex;  flex-direction: column;  height: 100%;}
+        .content {  flex: 1 0 auto;}
+        .footer {  flex: 0 0 auto;
+                   margin-left: 10%;
+                   margin-bottom: 10%;}               
+    </style>
+    <!-- gluing fotter to bottom as given in http://dimox.name/press_footer_bottom_with_css
+         I only added margin-left: 10%;  margin-bottom: 10%; -->
+
+	<title>Test 2</title>
+</head>
+<body>
+<div class="wrapper">
+<div class="content"></div>
+<div class="footer">
+<form id="fracs" name="fracs" action = "">
+    <div class="inline_math">
+    <fieldset class="fracmain" id="frac1" name="frac1">
+        <p>
+    	<input class="fracpart" name="num_of_frac1" type="number" value="1">
+        </p>     
+        <p>&mdash;</p>
+        <p>
+    	<input class="fracpart" name="den_of_frac1" type="number" value="1">
+        </p>
+    </fieldset>  
+    </div>
+
+    <div class="inline_math">
+    	<p> 	+      </p>
+    </div>
+
+    <div class="inline_math">
+    <fieldset class="fracmain" id="frac2" name="frac2">
+        <p>
+    	<input class="fracpart" name="num_of_frac2" type="number" value="1">
+        </p>     
+        <p>&mdash;</p>
+        <p>
+    	<input class="fracpart" name="den_of_frac2" type="number" value="1">
+        </p>
+    </fieldset>  
+    </div>
+
+    <div class="inline_math">
+    	<p> 	=      </p>
+    </div>
+
+    <div class="inline_math">
+    <fieldset class="fracmain" id="frac3" name="frac3">
+        <p>
+    	<input class="fracpart" name="num_of_frac3" type="number" value="2">
+        </p>     
+        <p>&mdash;</p>
+        <p>
+    	<input class="fracpart" name="den_of_frac3" type="number" value="1">
+        </p>
+    </fieldset>  
+    </div>
+
+<!--    <div class="inline_math">
+    	<p id="val_of_frac3"></p>
+    </div> -->
+
+    <div class="block_math">
+    	<input type="button" onclick="showValue();" value="Check">
+    </div>
+
+    <div class="block_math" id="message">
+    	<p></p>
+    </div>
+    
+</form>
+</div>
+</div>
+
+<script type="text/javascript">
+    var form = document.forms.fracs;
+    var num1 = form.elements.frac1.elements.num_of_frac1;
+    var den1 = form.elements.frac1.elements.den_of_frac1;
+    var num2 = form.elements.frac2.elements.num_of_frac2;
+    var den2 = form.elements.frac2.elements.den_of_frac2;
+    var num3 = form.elements.frac3.elements.num_of_frac3;
+    var den3 = form.elements.frac3.elements.den_of_frac3;
+
+    function showValue() {
+    	var t = calculateValue();
+    	if (t === 0) {
+            document.getElementById("message").innerText = "Well done!";
+    	} else if (t === "Error") {
+    		document.getElementById("message").innerText = "Error: division by zero";   		
+    	} else {
+    		document.getElementById("message").innerText = "Incorrect. Try again";
+    	};
+    	
+    }
+
+    function calculateValue() {
+    	var p1 = parseInt(num1.value);
+    	var q1 = parseInt(den1.value);
+    	var p2 = parseInt(num2.value);
+    	var q2 = parseInt(den2.value);
+    	var p3 = parseInt(num3.value);
+    	var q3 = parseInt(den3.value);
+
+    	var result = ((q1*q2*q3) !== 0) ? (p1*q2*q3 + q1*p2*q3 - q1*q2*p3) : "Error";
+    	return result;	
+    }
+
+   
+</script>
+
+</body>
+</html>
